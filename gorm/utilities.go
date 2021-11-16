@@ -13,8 +13,8 @@ import (
 
 	"time"
 
-	"github.com/Kotodian/atlas-app-toolkit/rpc/resource"
-	"github.com/Kotodian/atlas-app-toolkit/util"
+	"github.com/infobloxopen/atlas-app-toolkit/rpc/resource"
+	"github.com/infobloxopen/atlas-app-toolkit/util"
 )
 
 // HandleFieldPath converts fieldPath to appropriate db string for use in where/order by clauses

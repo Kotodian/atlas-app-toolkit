@@ -1,4 +1,4 @@
-module github.com/Kotodian/atlas-app-toolkit
+module github.com/infobloxopen/atlas-app-toolkit
 
 go 1.14
 

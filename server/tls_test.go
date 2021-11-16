@@ -11,8 +11,8 @@ import (
 
 	"context"
 
-	"github.com/Kotodian/atlas-app-toolkit/server/testdata"
-	"github.com/Kotodian/atlas-app-toolkit/servertest"
+	"github.com/infobloxopen/atlas-app-toolkit/server/testdata"
+	"github.com/infobloxopen/atlas-app-toolkit/servertest"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 )

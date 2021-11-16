@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/Kotodian/atlas-app-toolkit/query"
+	"github.com/infobloxopen/atlas-app-toolkit/query"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
 )

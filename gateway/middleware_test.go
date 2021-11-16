@@ -3,7 +3,7 @@ package gateway
 import (
 	"testing"
 
-	"github.com/Kotodian/atlas-app-toolkit/query"
+	"github.com/infobloxopen/atlas-app-toolkit/query"
 )
 
 func TestUnsetOp(t *testing.T) {

@@ -12,9 +12,9 @@ import (
 
 	"errors"
 
-	"github.com/Kotodian/atlas-app-toolkit/gateway"
-	"github.com/Kotodian/atlas-app-toolkit/health"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"github.com/infobloxopen/atlas-app-toolkit/gateway"
+	"github.com/infobloxopen/atlas-app-toolkit/health"
 	"google.golang.org/grpc"
 )
 
