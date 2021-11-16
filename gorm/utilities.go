@@ -8,14 +8,13 @@ import (
 	"strings"
 
 	"github.com/golang/protobuf/proto"
-	jgorm "github.com/jinzhu/gorm"
 	"github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/jinzhu/inflection"
 
 	"time"
 
-	"github.com/infobloxopen/atlas-app-toolkit/rpc/resource"
-	"github.com/infobloxopen/atlas-app-toolkit/util"
+	"github.com/Kotodian/atlas-app-toolkit/rpc/resource"
+	"github.com/Kotodian/atlas-app-toolkit/util"
 )
 
 // HandleFieldPath converts fieldPath to appropriate db string for use in where/order by clauses
@@ -136,7 +135,7 @@ func tableName(t reflect.Type) string {
 	if tn, ok := table.(tableNamer); ok {
 		return tn.TableName()
 	}
-	return inflection.Plural(jgorm.ToDBName(t.Name()))
+	return inflection.Plural(ToDBName(t.Name()))
 }
 
 func columnName(sf *reflect.StructField) string {
@@ -144,7 +143,7 @@ func columnName(sf *reflect.StructField) string {
 	if ex {
 		return tagCol
 	}
-	return jgorm.ToDBName(sf.Name)
+	return ToDBName(sf.Name)
 }
 
 func gormTag(sf *reflect.StructField, tag string) (bool, string) {

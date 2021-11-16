@@ -7,11 +7,11 @@ import (
 	"reflect"
 	"sync"
 
-	"github.com/infobloxopen/atlas-app-toolkit/rpc/errdetails"
-	"github.com/jinzhu/gorm"
+	"github.com/Kotodian/atlas-app-toolkit/rpc/errdetails"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+	"gorm.io/gorm"
 )
 
 // ctxKey is an unexported type for keys defined in this package.
@@ -107,7 +107,7 @@ func (t *Transaction) beginWithContext(ctx context.Context) *gorm.DB {
 	defer t.mu.Unlock()
 
 	if t.current == nil {
-		t.current = t.parent.BeginTx(ctx, nil)
+		t.current = t.parent.Begin(nil)
 	}
 
 	return t.current
@@ -124,7 +124,7 @@ func (t *Transaction) beginWithContextAndOptions(ctx context.Context, opts *sql.
 	defer t.mu.Unlock()
 
 	if t.current == nil {
-		t.current = t.parent.BeginTx(ctx, opts)
+		t.current = t.parent.Begin(opts)
 	}
 
 	return t.current
@@ -139,7 +139,8 @@ func (t *Transaction) Rollback() error {
 	if t.current == nil {
 		return nil
 	}
-	if reflect.ValueOf(t.current.CommonDB()).IsNil() {
+	commonDB, _ := t.current.DB()
+	if reflect.ValueOf(commonDB).IsNil() {
 		return status.Error(codes.Unavailable, "Database connection not available")
 	}
 	t.current.Rollback()
@@ -153,8 +154,8 @@ func (t *Transaction) Rollback() error {
 func (t *Transaction) Commit(ctx context.Context) error {
 	t.mu.Lock()
 	defer t.mu.Unlock()
-
-	if t.current == nil || reflect.ValueOf(t.current.CommonDB()).IsNil() {
+	commonDB, _ := t.current.DB()
+	if t.current == nil || reflect.ValueOf(commonDB).IsNil() {
 		return nil
 	}
 	t.current.Commit()

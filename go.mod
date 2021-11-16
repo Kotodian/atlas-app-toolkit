@@ -1,4 +1,4 @@
-module github.com/infobloxopen/atlas-app-toolkit
+module github.com/Kotodian/atlas-app-toolkit
 
 go 1.14
 
@@ -24,4 +24,5 @@ require (
 	google.golang.org/grpc/examples v0.0.0-20210715165331-ce7bdf50abb1 // indirect
 	google.golang.org/protobuf v1.27.1
 	gopkg.in/yaml.v2 v2.2.8 // indirect
+	gorm.io/gorm v1.22.3
 )

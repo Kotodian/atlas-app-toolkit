@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	jgorm "github.com/jinzhu/gorm"
+	jgorm "gorm.io/gorm"
 )
 
 // MigrationVersionValidator has a function for checking the database version
@@ -90,7 +90,8 @@ func MaxVersionFrom(path string) (MigrationVersionValidator, error) {
 func VerifyMigrationVersion(db *jgorm.DB, v MigrationVersionValidator) error {
 	var version int64
 	var dirty bool
-	row := db.DB().QueryRow(`SELECT * FROM schema_migrations`)
+	_db, _ := db.DB()
+	row := _db.QueryRow(`SELECT * FROM schema_migrations`)
 	if err := row.Scan(&version, &dirty); err != nil {
 		return err
 	}

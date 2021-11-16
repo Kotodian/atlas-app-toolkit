@@ -7,10 +7,10 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 
-	"github.com/infobloxopen/atlas-app-toolkit/query"
-	"github.com/infobloxopen/atlas-app-toolkit/util"
+	"github.com/Kotodian/atlas-app-toolkit/query"
+	"github.com/Kotodian/atlas-app-toolkit/util"
 )
 
 // DefaultFieldSelectionConverter performs default convertion for FieldSelection collection operator
@@ -138,7 +138,7 @@ func preload(db *gorm.DB, obj interface{}, assoc string) (*gorm.DB, error) {
 				return db.Preload(assoc), nil
 			} else {
 				return db.Preload(assoc, func(db *gorm.DB) *gorm.DB {
-					return db.Order(gorm.ToDBName(pos))
+					return db.Order(ToDBName(pos))
 				}), nil
 			}
 		}
